@@ -283,7 +283,7 @@ type Mutation {
 }
 
 type Subscription {
-  todoSubscribe: Todo!
+  todoSubscribe: Todo
 }`},
 )
 
@@ -533,7 +533,7 @@ func (ec *executionContext) _Subscription_todoSubscribe(ctx context.Context, fie
 			w.Write([]byte{'{'})
 			graphql.MarshalString(field.Alias).MarshalGQL(w)
 			w.Write([]byte{':'})
-			ec.marshalNTodo2ᚖgithubᚗcomᚋCareCloudᚋgqlgenᚑtodosᚐTodo(ctx, field.Selections, res).MarshalGQL(w)
+			ec.marshalOTodo2ᚖgithubᚗcomᚋCareCloudᚋgqlgenᚑtodosᚐTodo(ctx, field.Selections, res).MarshalGQL(w)
 			w.Write([]byte{'}'})
 		})
 	}
@@ -2739,6 +2739,17 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 		return graphql.Null
 	}
 	return ec.marshalOString2string(ctx, sel, *v)
+}
+
+func (ec *executionContext) marshalOTodo2githubᚗcomᚋCareCloudᚋgqlgenᚑtodosᚐTodo(ctx context.Context, sel ast.SelectionSet, v Todo) graphql.Marshaler {
+	return ec._Todo(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalOTodo2ᚖgithubᚗcomᚋCareCloudᚋgqlgenᚑtodosᚐTodo(ctx context.Context, sel ast.SelectionSet, v *Todo) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Todo(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalO__EnumValue2ᚕgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐEnumValue(ctx context.Context, sel ast.SelectionSet, v []introspection.EnumValue) graphql.Marshaler {
