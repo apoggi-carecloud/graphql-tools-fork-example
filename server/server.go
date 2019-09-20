@@ -9,7 +9,7 @@ import (
 	gqlgen_todos "github.com/CareCloud/gqlgen-todos"
 )
 
-const defaultPort = "8080"
+const defaultPort = "4003"
 
 func main() {
 	port := os.Getenv("PORT")

@@ -2,6 +2,14 @@
 
 package gqlgen_todos
 
+type Bar interface {
+	IsBar()
+}
+
+type Foo interface {
+	IsFoo()
+}
+
 type NewTodo struct {
 	Text   string `json:"text"`
 	UserID string `json:"userId"`
@@ -12,9 +20,17 @@ type Todo struct {
 	Text string `json:"text"`
 	Done bool   `json:"done"`
 	User *User  `json:"user"`
+	Foo  Foo    `json:"foo"`
+	Bar  Bar    `json:"bar"`
 }
+
+func (Todo) IsFoo() {}
+func (Todo) IsBar() {}
 
 type User struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }
+
+func (User) IsFoo() {}
+func (User) IsBar() {}

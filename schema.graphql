@@ -1,12 +1,15 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
-
+union Foo = User | Todo
+union Bar = User | Todo
 type Todo {
   id: ID!
   text: String!
   done: Boolean!
   user: User!
+  foo: Foo
+  bar: Bar
 }
 
 type User {

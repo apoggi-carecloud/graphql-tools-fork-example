@@ -2,6 +2,7 @@ package gqlgen_todos
 
 import (
 	"context"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -18,6 +19,9 @@ func (r *Resolver) Query() QueryResolver {
 }
 func (r *Resolver) Subscription() SubscriptionResolver {
 	return &subscriptionResolver{r}
+}
+func (r *Resolver) Todo() TodoResolver {
+	return &todoResolver{r}
 }
 
 type mutationResolver struct{ *Resolver }
@@ -53,4 +57,25 @@ func (r *subscriptionResolver) TodoSubscribe(ctx context.Context) (<-chan *Todo,
 		}
 	}()
 	return todoChan, nil
+}
+
+type todoResolver struct{ *Resolver }
+
+func (r *todoResolver) Foo(ctx context.Context, obj *Todo) (Foo, error) {
+	resp, err := http.Get("https://pokeapi.co/api/v2")
+	if err != nil{
+		return nil, err
+	}
+	return Todo{
+		Text: resp.Status,
+	}, nil
+}
+func (r *todoResolver) Bar(ctx context.Context, obj *Todo) (Bar, error) {
+	resp, err := http.Get("https://pokeapi.co/api/v2")
+	if err != nil{
+		return nil, err
+	}
+	return Todo{
+		Text: resp.Status,
+	}, nil
 }

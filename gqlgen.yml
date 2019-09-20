@@ -13,3 +13,10 @@ resolver:
   filename: resolver.go
   type: Resolver
 autobind: []
+models:
+  Todo:
+    fields:
+      foo:
+        resolver: true # force a resolver to be generated
+      bar:
+        resolver: true # force a resolver to be generated
